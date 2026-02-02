@@ -135,17 +135,18 @@ public class ItemController {
 			// 기존의 있는 외부저장소에 있는 파일을 삭제
 			Item oldItem = itemService.read(item);
 			oldUrl = oldItem.getUrl(); // 기존에 글에 올려져 있던 이미지
-			
+
 			log.info("originalName: " + file.getOriginalFilename());
 			log.info("size: " + file.getSize());
 			log.info("contentType: " + file.getContentType());
-			String createdFileName = uploadFile(file.getOriginalFilename(),file.getBytes());
+			String createdFileName = uploadFile(file.getOriginalFilename(), file.getBytes());
 			item.setUrl(createdFileName);
 		}
 		int count = itemService.update(item);
 		if (count > 0) {
-			//테이블에 수정 내용이 적용되고 난 뒤, 이전 이미지파일을 삭제
-			if(oldUrl !=null) deleteFile(oldUrl);
+			// 테이블에 수정 내용이 적용되고 난 뒤, 이전 이미지파일을 삭제
+			if (oldUrl != null)
+				deleteFile(oldUrl);
 			model.addAttribute("message", "수정성공 %s".formatted(item.getName()));
 			return "item/success";
 		}
@@ -181,7 +182,7 @@ public class ItemController {
 	// 외부저장소 자료업로드 파일명생성후 저장
 	// c:/upload/"../window/system.ini" 디렉토리 탈출공격(path tarversal)
 	private boolean deleteFile(String fileName) throws Exception {
-		if (fileName.contains("..")) { //경로에 ..이 있으면 잘못된거니까 돌려보냄
+		if (fileName.contains("..")) { // 경로에 ..이 있으면 잘못된거니까 돌려보냄
 			throw new IllegalArgumentException("잘못된 경로 입니다.");
 		}
 		File file = new File(uploadPath, fileName);
@@ -205,5 +206,22 @@ public class ItemController {
 		model.addAttribute("item", item);
 		return "item/detail";
 	}
+
+	@GetMapping("/delete")
+	public String itemDelete(Item item, Model model) throws Exception {
+		log.info("delete");
+		String url = itemService.getPicture(item); // 상품이 삭제되면 파일도 하드에서 삭제해야 함
+		int count = itemService.delete(item);
+		
+		if (count > 0) {
+			if(url != null) deleteFile(url);
+			model.addAttribute("message", "삭제 성공 %d".formatted(item.getId()));
+			return "item/success";
+		}
+
+		model.addAttribute("message", "삭제 실패 %d".formatted(item.getId()));
+		return "item/failed";
+	}
+
 
 }
