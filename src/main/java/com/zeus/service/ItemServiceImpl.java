@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.zeus.domain.Item;
 import com.zeus.mapper.ItemMapper;
@@ -16,6 +17,7 @@ public class ItemServiceImpl implements ItemService{
 	private ItemMapper itemMapper;
 	
 	@Override
+	@Transactional
 	public int create(Item item) throws Exception {
 		int count = itemMapper.create(item);
 		return count;
@@ -41,8 +43,7 @@ public class ItemServiceImpl implements ItemService{
 
 	@Override
 	public List<Item> list() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return itemMapper.list();
 	}
 
 	@Override

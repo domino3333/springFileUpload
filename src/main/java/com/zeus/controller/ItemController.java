@@ -2,6 +2,7 @@ package com.zeus.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 import org.mybatis.spring.annotation.MapperScan;
@@ -55,7 +56,7 @@ public class ItemController {
 		item.setUrl(createdFileName);
 		// 5. 테이블에 상품 화면 정보를 저장
 		int count = itemService.create(item);
-		
+
 		if (count > 0) {
 			model.addAttribute("message", "성공 %s".formatted(file.getOriginalFilename()));
 			return "item/success";
@@ -71,6 +72,22 @@ public class ItemController {
 		File target = new File(uploadPath, createdFileName);
 		FileCopyUtils.copy(fileData, target);
 		return createdFileName;
+	}
+
+	@GetMapping("/list")
+	public String itemList(Model model) throws Exception {
+		log.info("list");
+
+		List<Item> itemList = itemService.list();
+		model.addAttribute("itemList", itemList);
+		
+		return "item/list";
+	}
+	@GetMapping("/detail")
+	public String itemDetail(Item item,Model model) throws Exception {
+		log.info("detail");
+		
+		return 
 	}
 
 }

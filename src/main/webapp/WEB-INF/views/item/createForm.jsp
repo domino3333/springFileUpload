@@ -4,20 +4,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>T1 Shop | Item Register</title>
+<title>상품 등록하기</title>
 <style>
-/* 기존 스타일 유지 및 파일 업로드용 스타일 추가 */
+/* 밝은 톤 & 파랑 계열 */
 :root {
-	--t1-red: #E2012D;
-	--t1-black: #0f0f0f;
-	--t1-gray: #1a1a1a;
-	--t1-gold: #C69C6D;
+	--t1-blue: #007BFF;     /* 강조 색상 */
+	--t1-light: #f8f9fa;    /* 배경 밝은 색 */
+	--t1-gray: #e0e0e0;     /* 컨테이너 배경 */
+	--t1-dark: #343a40;     /* 글자 기본 */
+	--t1-white: #ffffff;     /* 글자 밝은 색 */
 }
 
 body {
-	background-color: var(--t1-black);
+	background-color: var(--t1-light);
 	font-family: 'Pretendard', sans-serif;
-	color: #ffffff;
+	color: var(--t1-dark);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -32,8 +33,8 @@ body {
 	background: var(--t1-gray);
 	padding: 40px;
 	border-radius: 15px;
-	border: 2px solid var(--t1-red);
-	box-shadow: 0 0 30px rgba(226, 1, 45, 0.2);
+	border: 2px solid var(--t1-blue);
+	box-shadow: 0 0 30px rgba(0, 123, 255, 0.2);
 }
 
 .header {
@@ -45,10 +46,11 @@ body {
 	font-size: 2rem;
 	font-weight: 900;
 	letter-spacing: -1px;
+	color: var(--t1-dark);
 }
 
 .header span {
-	color: var(--t1-red);
+	color: var(--t1-blue);
 }
 
 .form-group {
@@ -58,7 +60,7 @@ body {
 .form-group label {
 	display: block;
 	font-size: 0.9rem;
-	color: var(--t1-gold);
+	color: var(--t1-blue);
 	margin-bottom: 8px;
 	text-transform: uppercase;
 	font-weight: bold;
@@ -68,19 +70,13 @@ body {
 input[type="text"], input[type="number"], textarea {
 	width: 100%;
 	padding: 12px 15px;
-	background: #0b0b0b;
-	border: 1px solid #333;
+	background: #ffffff;
+	border: 1px solid #ccc;
 	border-radius: 5px;
-	color: #fff;
+	color: var(--t1-dark);
 	font-size: 1rem;
 	box-sizing: border-box;
 	transition: 0.3s;
-}
-
-/* 파일 업로드 스타일 */
-input[type="file"] {
-	color: #888;
-	font-size: 0.9rem;
 }
 
 textarea {
@@ -89,9 +85,9 @@ textarea {
 }
 
 input:focus, textarea:focus {
-	border-color: var(--t1-red);
+	border-color: var(--t1-blue);
 	outline: none;
-	box-shadow: 0 0 10px rgba(226, 1, 45, 0.3);
+	box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
 }
 
 .btn-area {
@@ -112,34 +108,32 @@ input:focus, textarea:focus {
 	text-transform: uppercase;
 	text-align: center;
 	text-decoration: none;
+	color: var(--t1-white);
 }
 
 .btn-submit {
-	background: var(--t1-red);
-	color: #fff;
+	background: var(--t1-blue);
 }
 
 .btn-submit:hover {
-	background: #ff1a4a;
+	background: #0056b3;
 	transform: translateY(-3px);
-	box-shadow: 0 5px 15px rgba(226, 1, 45, 0.5);
+	box-shadow: 0 5px 15px rgba(0, 123, 255, 0.5);
 }
 
 .btn-list {
-	background: #333;
-	color: #fff;
+	background: #6c757d;
 }
 
 .btn-list:hover {
-	background: #444;
-	color: #fff;
+	background: #5a6268;
 	transform: translateY(-3px);
 }
 
 .bottom-deco {
 	margin-top: 30px;
 	font-size: 12px;
-	color: #444;
+	color: #555;
 	text-align: center;
 	font-family: monospace;
 }
@@ -148,7 +142,6 @@ input:focus, textarea:focus {
 .file-upload-wrapper {
     position: relative;
     width: 100%;
-
 }
 
 /* 실제 인풋은 숨김 */
@@ -160,8 +153,8 @@ input:focus, textarea:focus {
 .file-label {
     display: flex;
     align-items: center;
-    background: #0b0b0b;
-    border: 1px solid #333;
+    background: #ffffff;
+    border: 1px solid #ccc;
     border-radius: 5px;
     cursor: pointer;
     overflow: hidden;
@@ -169,23 +162,23 @@ input:focus, textarea:focus {
 }
 
 .file-label:hover {
-    border-color: var(--t1-red);
+    border-color: var(--t1-blue);
 }
 
 /* 왼쪽 '파일 선택' 영역 */
 .file-btn {
-    background: #222;
-    color: var(--t1-gold);
+    background: var(--t1-blue);
+    color: var(--t1-white);
     padding: 12px 20px;
     font-size: 0.85rem;
     font-weight: bold;
-    border-right: 1px solid #333;
+    border-right: 1px solid #ccc;
 }
 
 /* 오른쪽 파일명 표시 영역 */
 .file-name-text {
     padding: 0 15px;
-    color: #666;
+    color: #555;
     font-size: 0.9rem;
 }
 </style>
@@ -193,72 +186,61 @@ input:focus, textarea:focus {
 <body>
 <script>
 function updateFileName(input) {
-    // 1. 파일명을 표시할 span 태그를 가져옵니다.
     const fileNameDisplay = document.getElementById('file-name');
-
-    // 2. 파일이 선택되었는지 확인합니다.
     if (input.files && input.files.length > 0) {
-        // 3. 첫 번째 파일의 이름을 가져와서 span에 넣어줍니다.
         const name = input.files[0].name;
         fileNameDisplay.innerText = name;
-
-        // 4. (디테일) 파일이 선택되면 글자색을 하얗게 바꿔서 강조합니다.
-        fileNameDisplay.style.color = "#ffffff";
+        fileNameDisplay.style.color = "#343a40";
     } else {
-        // 5. 선택이 취소되었을 때의 기본 문구
         fileNameDisplay.innerText = "선택된 파일 없음";
-        fileNameDisplay.style.color = "#666";
+        fileNameDisplay.style.color = "#555";
     }
 }
 </script>
 
-	<div class="write-container">
-		<div class="header">
-			<h1>
-				ITEM <span>UPLOAD</span>
-			</h1>
-		</div>
-
-		<form action="/item/create" method="post"
-			enctype="multipart/form-data">
-
-			<div class="form-group">
-				<label for="name">상품이름</label> <input type="text" id="name"
-					name="name" placeholder="상품명을 입력하세요" required>
-			</div>
-
-			<div class="form-group">
-				<label for="price">상품가격(KRW)</label> <input type="number" id="price"
-					name="price" placeholder="상품가격을 입력하세요" required>
-			</div>
-
-			<div class="form-group">
-				<label>Item Image</label>
-				<div class="file-upload-wrapper">
-					<input type="file" id="picture" name="picture" class="file-input"
-						onchange="updateFileName(this)"> <label for="picture"
-						class="file-label"> <span class="file-btn">파일 선택</span> <span
-						id="file-name" class="file-name-text">선택된 파일 없음</span>
-					</label>
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label for="description">상품 상세 설명</label>
-				<textarea id="description" name="description"
-					placeholder="상품 상세 설명을 입력하세요" ></textarea>
-			</div>
-
-			<div class="btn-area">
-				<a href="/item/list" class="btn btn-list">상품 목록</a>
-				<button type="submit" class="btn btn-submit">상품 등록</button>
-				<button type="reset" class="btn btn-cancel">상품 등록 취소</button>
-			</div>
-		</form>
-
-		<div class="bottom-deco">[ SYSTEM: MULTIPART DATA READY TO
-			UPLOAD ]</div>
+<div class="write-container">
+	<div class="header">
+		<h1>
+			ITEM <span>UPLOAD</span>
+		</h1>
 	</div>
 
+	<form action="/item/create" method="post" enctype="multipart/form-data">
+
+		<div class="form-group">
+			<label for="name">상품이름</label>
+			<input type="text" id="name" name="name" placeholder="상품명을 입력하세요" required>
+		</div>
+
+		<div class="form-group">
+			<label for="price">상품가격(KRW)</label>
+			<input type="number" id="price" name="price" placeholder="상품가격을 입력하세요" required>
+		</div>
+
+		<div class="form-group">
+			<label>Item Image</label>
+			<div class="file-upload-wrapper">
+				<input type="file" id="picture" name="picture" class="file-input" onchange="updateFileName(this)">
+				<label for="picture" class="file-label">
+					<span class="file-btn">파일 선택</span>
+					<span id="file-name" class="file-name-text">선택된 파일 없음</span>
+				</label>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="description">상품 상세 설명</label>
+			<textarea id="description" name="description" placeholder="상품 상세 설명을 입력하세요"></textarea>
+		</div>
+
+		<div class="btn-area">
+			<a href="/item/list" class="btn btn-list">상품 목록</a>
+			<button type="submit" class="btn btn-submit">상품 등록</button>
+			<button type="reset" class="btn btn-cancel">상품 등록 취소</button>
+		</div>
+	</form>
+
+	<div class="bottom-deco">[ SYSTEM: MULTIPART DATA READY TO UPLOAD ]</div>
+</div>
 </body>
 </html>

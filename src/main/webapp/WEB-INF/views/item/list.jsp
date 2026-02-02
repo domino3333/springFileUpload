@@ -194,58 +194,41 @@ body {
 	<div class="container">
 		<div class="header-box">
 			<h1>
-				Member <span>LIST</span>
+				item <span>LIST</span>
 			</h1>
 
 			<div class="btn-group">
-				<a href="/member/memberList" class="btn-write">회원 리스트</a> <a
-					href="/member/insertForm" class="btn-write">회원 가입</a>
+				<a href="/item/list" class="btn-write">상품 리스트</a> <a
+					href="/item/createForm" class="btn-write">상품 등록</a>
 			</div>
-		</div>
-
-
-		<div class="search-container">
-			<form action="/member/search" method="get" class="search-form">
-				<select name="searchType" class="search-select">
-					<option value="id">ID</option>
-					<option value="name">NAME</option>
-				</select> 
-				<input type="text" name="keyword" class="search-input"
-					placeholder="검색할 키워드 입력">
-				<button type="submit" class="btn-search">검색</button>
-			</form>
 		</div>
 
 
 		<table class="t1-table">
 			<thead>
 				<tr>
-					<th width="20%">NO</th>
-					<th width="20%">ID</th>
-					<th width="20%">PW</th>
-					<th width="20%">NAME</th>
-					<th width="20%">REGDATE</th>
+					<th width="10%">ID</th>
+					<th width="10%">NAME</th>
+					<th width="10%">PRICE</th>
+					<th width="70%">URL</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:choose>
-					<c:when test="${not empty memberList}">
-						<c:forEach var="member" items="${memberList}">
+					<c:when test="${not empty itemList}">
+						<c:forEach var="item" items="${itemList}">
 							<tr>
-								<td>${member.no}</td>
+								<td>${item.id}</td>
 								<td class="title-cell"><a
-									href="/member/detail?no=${member.no}">${member.id}</a></td>
-								<td>${member.pw}</td>
-								<td>${member.name}</td>
-								<td><fmt:formatDate value="${member.regDate}"
-										pattern="yyyy.MM.dd" /></td>
+									href="/member/detail?id=${item.id}">${item.name}</a></td>
+								<td>${item.price}</td>
+								<td>${item.url}</td>
 							</tr>
 						</c:forEach>
 					</c:when>
 					<c:otherwise>
 						<tr>
-							<td colspan="5" style="padding: 50px; color: #555;">작성된 게시글이
-								없습니다.</td>
+							<td colspan="4" style="padding: 50px; color: #555;">등록된 상품이 없음</td>
 						</tr>
 					</c:otherwise>
 				</c:choose>
