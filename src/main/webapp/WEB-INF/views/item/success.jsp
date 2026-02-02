@@ -6,7 +6,7 @@
 <title></title>
 <style>
     :root {
-        --t1-red: #E2012D;
+        --t1-red: rgb(0, 128, 255);
         --t1-black: #0f0f0f;
         --t1-gray: #1a1a1a;
         --t1-gold: #C69C6D;
@@ -92,7 +92,7 @@
     <p>${message}</p>
 
     <a href="/item/createForm" class="btn-list">상품등록</a>
-    <a href="/item/itemList" class="btn-list">상품 리스트</a>
+    <a href="/item/list" class="btn-list">상품 리스트</a>
 
 </div>
 
