@@ -31,6 +31,12 @@
 	</select>
 
 	<update id="update">
+		UPDATE item
+		SET name = #{name},
+		price = #{price},
+		description = #{description},
+		url = #{url}
+		WHERE id = #{id}
 	</update>
 
 	<delete id="delete">
@@ -45,7 +51,7 @@
 
 
 	<select id="getPicture" resultType="String">
-			SELECT URL FROM item WHERE id = #{id}
+		SELECT URL FROM item WHERE id = #{id}
 	</select>
 
 </mapper>

@@ -25,6 +25,42 @@ body {
 	padding: 50px 0;
 }
 
+/* 상품 설명 textarea 스타일 */
+.detail-textarea {
+	width: calc(100% - 60px);
+	margin: 30px;
+	padding: 20px;
+	min-height: 200px;
+	background: #0b1c2d; /* 파랑 톤 배경 */
+	border: 2px solid var(--t1-red); /* 파랑 테두리 */
+	border-radius: 10px;
+	color: #ffffff;
+	font-size: 1rem;
+	line-height: 1.7;
+	resize: none; /* 크기 조절 막기 */
+	outline: none;
+	box-sizing: border-box;
+}
+
+/* 포커스 시 은은한 파랑 강조 */
+.detail-textarea:focus {
+	box-shadow: 0 0 15px rgba(0, 128, 255, 0.4);
+}
+
+/* 스크롤바 파랑 톤 (크롬 기준) */
+.detail-textarea::-webkit-scrollbar {
+	width: 8px;
+}
+
+.detail-textarea::-webkit-scrollbar-thumb {
+	background: rgba(0, 128, 255, 0.6);
+	border-radius: 4px;
+}
+
+.detail-textarea::-webkit-scrollbar-track {
+	background: #081420;
+}
+
 .detail-container {
 	max-width: 800px;
 	margin: 0 auto;
@@ -150,17 +186,18 @@ body {
 		</div>
 
 		<div class="btn-area">
-            <img alt="상품 이미지${item.name}" src="/item/display?id=${item.id}" width="300">
-        </div>
+			<img alt="상품 이미지${item.name}" src="/item/display?id=${item.id}"
+				width="300">
+		</div>
+		<textarea class="detail-textarea" readonly>${item.description}</textarea>
 
 		<div class="btn-area">
 			<a href="/item/list" class="btn btn-list">상품 목록</a>
 
 			<div class="btn-group">
-				<a href="/item/updateForm?no=${item.id}" class="btn btn-edit">
-					수정하기</a>
-					<a href="/item/delete?no=${item.id}"
-					class="btn btn-delete" onclick="return confirm('정말 삭제하시겠습니까?')">삭제하기</a>
+				<a href="/item/updateForm?id=${item.id}" class="btn btn-edit">
+					수정하기</a> <a href="/item/delete?id=${item.id}" class="btn btn-delete"
+					onclick="return confirm('정말 삭제하시겠습니까?')">삭제하기</a>
 			</div>
 		</div>
 

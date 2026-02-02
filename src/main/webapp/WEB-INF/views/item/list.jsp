@@ -6,10 +6,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>T1 Community | Board List</title>
+<title>List</title>
 <style>
 :root {
-	--t1-red: #E2012D;
+	--t1-red: rgb(128, 0, 255);
 	--t1-black: #0f0f0f;
 	--t1-gray: #1a1a1a;
 	--t1-gold: #C69C6D;
