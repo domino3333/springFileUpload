@@ -8,10 +8,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원정보 상세</title>
+<title>상품 정보 상세</title>
 <style>
 :root {
-	--t1-red: #E2012D;
+	--t1-red: rgb(0, 128, 255);
 	--t1-black: #0f0f0f;
 	--t1-gray: #1a1a1a;
 	--t1-gold: #C69C6D;
@@ -142,49 +142,29 @@ body {
 
 	<div class="detail-container">
 		<div class="detail-header">
-			<span class="post-no">회원번호${member.no}</span>
-			<h1>${member.id}</h1>
+			<span class="post-no">상품 ID: ${item.id}</span>
+			<h1>${item.name}</h1>
 			<div class="post-info">
-				<span>name: <b>${member.name}</b></span> <span>date: <b><fmt:formatDate
-							value="${member.regDate}" pattern="yyyy.MM.dd HH:mm" /></b></span>
+				<span>price <b>${item.price}</b></span>
 			</div>
 		</div>
 
 		<div class="btn-area">
-            <form:form modelAttribute="member">
-                <form:select path="authList[0].auth" disabled="true">
-                    <form:option value="" label="=== 선택해 주세요 ===" />
-                    <form:option value="ROLE_USER" label="사용자" />
-                    <form:option value="ROLE_MEMBER" label="회원" />
-                    <form:option value="ROLE_ADMIN" label="관리자" />
-                </form:select>
-                <form:select path="authList[1].auth" disabled="true">
-                    <form:option value="" label="=== 선택해 주세요 ===" />
-                    <form:option value="ROLE_USER" label="사용자" />
-                    <form:option value="ROLE_MEMBER" label="회원" />
-                    <form:option value="ROLE_ADMIN" label="관리자" />
-                </form:select>
-                <form:select path="authList[2].auth" disabled="true">
-                    <form:option value="" label="=== 선택해 주세요 ===" />
-                    <form:option value="ROLE_USER" label="사용자" />
-                    <form:option value="ROLE_MEMBER" label="회원" />
-                    <form:option value="ROLE_ADMIN" label="관리자" />
-                </form:select>
-            </form:form>
+            <img alt="상품 이미지${item.name}" src="/item/display?id=${item.id}" width="300">
         </div>
 
 		<div class="btn-area">
-			<a href="/member/memberList" class="btn btn-list">게시판 목록</a>
+			<a href="/item/list" class="btn btn-list">상품 목록</a>
 
 			<div class="btn-group">
-				<a href="/member/updateForm?no=${member.no}" class="btn btn-edit">
-					수정하기</a> <a href="/member/delete?no=${member.no}"
+				<a href="/item/updateForm?no=${item.id}" class="btn btn-edit">
+					수정하기</a>
+					<a href="/item/delete?no=${item.id}"
 					class="btn btn-delete" onclick="return confirm('정말 삭제하시겠습니까?')">삭제하기</a>
 			</div>
 		</div>
 
-		<div class="footer-deco">[ DATA ARCHIVE: T1 COMMUNITY SECURE
-			TERMINAL ]</div>
+		<div class="footer-deco">[ domino ]</div>
 	</div>
 
 </body>

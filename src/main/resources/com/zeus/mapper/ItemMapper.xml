@@ -21,6 +21,13 @@
 	</insert>
 
 	<select id="read" resultType="Item">
+		SELECT id,
+		name,
+		price,
+		description,
+		url
+		FROM item
+		WHERE id = #{id}
 	</select>
 
 	<update id="update">
@@ -35,9 +42,10 @@
 	WHERE id > 0 ORDER BY id DESC]]>
 
 	</select>
-	
-	
+
+
 	<select id="getPicture" resultType="String">
+			SELECT URL FROM item WHERE id = #{id}
 	</select>
 
 </mapper>
