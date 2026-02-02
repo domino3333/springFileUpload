@@ -9,7 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.zeus.domain.Item;
 import com.zeus.mapper.ItemMapper;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class ItemServiceImpl implements ItemService{
 
 	
@@ -42,6 +45,7 @@ public class ItemServiceImpl implements ItemService{
 
 	@Override
 	public List<Item> list() throws Exception {
+		log.info("service list()");
 		return itemMapper.list();
 	}
 
