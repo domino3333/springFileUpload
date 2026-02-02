@@ -91,8 +91,8 @@
 <div class="result-container">
     <p>${message}</p>
 
-    <a href="/member/insertForm" class="btn-list">회원가입</a>
-    <a href="/member/memberList" class="btn-list">회원리스트</a>
+    <a href="/item/createForm" class="btn-list">상품등록</a>
+    <a href="/item/itemList" class="btn-list">상품 리스트</a>
 
 </div>
 

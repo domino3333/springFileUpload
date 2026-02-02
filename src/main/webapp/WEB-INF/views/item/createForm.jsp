@@ -191,6 +191,26 @@ input:focus, textarea:focus {
 </style>
 </head>
 <body>
+<script>
+function updateFileName(input) {
+    // 1. 파일명을 표시할 span 태그를 가져옵니다.
+    const fileNameDisplay = document.getElementById('file-name');
+
+    // 2. 파일이 선택되었는지 확인합니다.
+    if (input.files && input.files.length > 0) {
+        // 3. 첫 번째 파일의 이름을 가져와서 span에 넣어줍니다.
+        const name = input.files[0].name;
+        fileNameDisplay.innerText = name;
+
+        // 4. (디테일) 파일이 선택되면 글자색을 하얗게 바꿔서 강조합니다.
+        fileNameDisplay.style.color = "#ffffff";
+    } else {
+        // 5. 선택이 취소되었을 때의 기본 문구
+        fileNameDisplay.innerText = "선택된 파일 없음";
+        fileNameDisplay.style.color = "#666";
+    }
+}
+</script>
 
 	<div class="write-container">
 		<div class="header">

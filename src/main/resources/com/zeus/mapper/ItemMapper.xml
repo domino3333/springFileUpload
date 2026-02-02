@@ -2,8 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zeus.mapper.ItemMapper">
 
-	<insert id="create">
-
+	<insert id="create" parameterType="Item">
+		INSERT INTO item
+		(
+		id,
+		name,
+		price,
+		description,
+		url
+		)
+		VALUES
+		(item_seq.nextval,
+		#{name},
+		#{price},
+		#{description},
+		#{url}
+		)
 	</insert>
 
 	<select id="read" resultType="Item">
@@ -19,7 +33,7 @@
 	<select id="list" resultType="Item"> 
 <![CDATA[ SELECT no, title, content, writer, reg_date FROM mybatisboard WHERE no > 0 ORDER BY no DESC, reg_date DESC ]]>
 	</select>
-	<select id="getPicture" resultType="String"> 
+	<select id="getPicture" resultType="String">
 	</select>
 
 </mapper>
